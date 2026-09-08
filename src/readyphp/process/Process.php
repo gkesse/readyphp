@@ -1,7 +1,9 @@
 <?php
+
 namespace readyphp\process;
 
-class Process {
+class Process
+{
     public function run()
     {
         echo sprintf("<h1>Bonjour tout le monde...<br>\n");

@@ -2,8 +2,9 @@
 
 ~*
 *.bak
+/.php-cs-fixer.cache
 
 # ignore les repertoires
 
-tmp/
-vendor/
+/tmp/
+/vendor/
