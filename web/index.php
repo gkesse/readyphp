@@ -1,3 +1,6 @@
 <?php
-echo sprintf("<h1>Bonjour tout le monde...<br>\n");
-echo sprintf("Ce site est en reconstruction...</h1>\n");
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$process = new \readyphp\process\Process();
+$process->run();

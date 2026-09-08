@@ -4,3 +4,6 @@
 *.bak
 
 # ignore les repertoires
+
+tmp/
+vendor/
