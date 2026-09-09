@@ -7,3 +7,9 @@ repos:
         language: system
         types: [php]
         pass_filenames: false
+
+      - id: readyphp-tests-php
+        name: Tests du code PHP
+        entry: hooks/pre-commit/readyphp-tests-php.sh
+        language: system
+        pass_filenames: false
