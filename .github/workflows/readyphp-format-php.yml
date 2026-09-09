@@ -1,0 +1,25 @@
+name: Vérification formatage PHP
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Installer PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+
+      - name: Installer dépendances
+        run: composer install --no-interaction --no-progress
+
+      - name: Vérifier formatage PHP
+        run: |
+          vendor/bin/php-cs-fixer fix --dry-run --diff --using-cache=no --config=.php-cs-fixer.php
