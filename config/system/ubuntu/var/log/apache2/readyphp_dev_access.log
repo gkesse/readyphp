@@ -1,0 +1,3 @@
+(*) on accede au fichier (readyphp_dev_access.log) pour voir les accès à l'application.
+
+tail -f /var/log/apache2/readyphp_dev_access.log

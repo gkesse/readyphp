@@ -1,0 +1,3 @@
+(*) on autorise les permissions d'execution dans le repertoire (home) pour les autres utilisateurs.
+
+chmod o+x /home/admins

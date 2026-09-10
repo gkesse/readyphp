@@ -1,0 +1,6 @@
+(*) on modifie le fichier (hosts) pour ajouter le contenu suivant.
+
+sudo nano /etc/hosts
+
+127.0.0.1       readyphp-prod.local
+127.0.0.1       readyphp-dev.local
