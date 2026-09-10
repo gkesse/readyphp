@@ -1,4 +1,12 @@
 repos:
+  - repo: https://github.com/GitGuardian/ggshield
+    rev: v1.25.0
+    hooks:
+      - id: ggshield
+        name: Scan des secrets (GitGuardian)
+        description: Empêche de committer des clés API, tokens, mots de passe
+        pass_filenames: false
+
   - repo: local
     hooks:
       - id: readyphp-format-php
