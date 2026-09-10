@@ -1,0 +1,18 @@
+(*) on modifie le (hosts).
+
+C:\Windows\System32\drivers\etc\hosts
+
+82.65.62.124 readycpp.share.srv
+82.65.62.124 readyphp.share.srv
+
+(*) on cree un lecteur reseau.
+
+-> se connecter a un lecteur reseau
+-> lecteur -> Z
+-> dossier -> \\readyphp.share.srv\readyphp_share
+-> cocher -> se connecter a l aide d informations differentes
+-> se connecter
+-> nom d utilisateur -> admins
+-> mot de passe -> MOT_DE_PASSE_SAMBA
+-> cocher -> memoriser mes informations d identification
+-> ok
