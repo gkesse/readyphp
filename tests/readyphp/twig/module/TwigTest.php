@@ -2,11 +2,31 @@
 
 declare(strict_types=1);
 
-namespace readytests\twig;
+namespace readyphp\twig\module;
 
 use PHPUnit\Framework\TestCase;
 
-require __DIR__ . '/../../../vendor/autoload.php';
+// cree un mock du controleur twig pour les tests
+class TwigMock extends \readyphp\twig\controller\Twig
+{
+    // recupere le repertoire des templates twig
+    public function getTemplateDir()
+    {
+        return sys_get_temp_dir() . '/readytests';
+    }
+
+    // recupere le fichier du template twig
+    public function getTemplateFile(): string
+    {
+        return 'template.twig';
+    }
+
+    // recupere les donnees du template twig
+    public function getTemplateData(): array
+    {
+        return ["name" => "MON_NOM"];
+    }
+}
 
 class TwigTest extends TestCase
 {
@@ -58,8 +78,8 @@ class TwigTest extends TestCase
         }
     }
 
-    // teste l'execution du process
-    public function test_execution_process()
+    // teste le rendu du module twig
+    public function test_rendu_module_twig()
     {
         // definit le resultat attendu
         $DEF_OUTPUT = "Bonjour : MON_NOM !\n";
@@ -67,14 +87,14 @@ class TwigTest extends TestCase
         // initialise le test
         $this->initialiser_test();
 
-        // cree le loader et l'environnement Twig
-        $loader = new \Twig\Loader\FilesystemLoader($this->m_template_dir);
-        $twig = new \Twig\Environment($loader);
+        // cree le controller et le module twig
+        $controller = new TwigMock();
+        $module = new Twig($controller);
 
-        // execute le rendu du template Twig
-        $output = $twig->render($this->m_template_file, ['name' => 'MON_NOM']);
+        // execute le module twig
+        $output = $module->render();
 
-        // teste l'execution du process
+        // teste le rendu du module twig
         $this->assertEquals($DEF_OUTPUT, $output);
 
         // nettoie le test

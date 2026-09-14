@@ -9,10 +9,13 @@ use PHPUnit\Framework\TestCase;
 class ProcessTest extends TestCase
 {
     // teste l'execution du process
-    public function test_Execution_Process()
+    public function test_execution_process()
     {
+        // teste l'execution du process
         $this->expectOutputRegex('/.+/');
+        // cree le process
         $process = new Process();
+        // execute le process
         $process->run();
     }
 }
