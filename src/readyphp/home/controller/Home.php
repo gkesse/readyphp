@@ -13,9 +13,16 @@ class Home extends \readyphp\twig\controller\Twig
 
     public function getTemplateData(): array
     {
-        return [
-            'title'   => 'Bonjour tout le monde...',
-            'content' => 'Ce site est en cours de reconstruction...'
-        ];
+        return ['home' => $this];
+    }
+
+    public function getTitle(): string
+    {
+        return 'Bonjout tout le monde...';
+    }
+
+    public function getContent(): string
+    {
+        return 'Ce site est en cours de reconstruction...';
     }
 }

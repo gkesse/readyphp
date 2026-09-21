@@ -69,7 +69,7 @@ class TwigTest extends TestCase
 
         // cree le loader et l'environnement Twig
         $loader = new \Twig\Loader\FilesystemLoader($this->m_template_dir);
-        $twig = new \Twig\Environment($loader);
+        $twig   = new \Twig\Environment($loader);
 
         // execute le rendu du template Twig
         $output = $twig->render($this->m_template_file, ['name' => 'MON_NOM']);
