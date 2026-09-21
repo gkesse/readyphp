@@ -23,6 +23,7 @@ abstract class Twig
 
     // recupere le fichier du template twig
     abstract public function getTemplateFile(): string;
+
     // recupere les donnees du template twig
     abstract public function getTemplateData(): array;
 }

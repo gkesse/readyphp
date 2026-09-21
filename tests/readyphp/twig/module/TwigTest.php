@@ -24,7 +24,7 @@ class TwigMock extends \readyphp\twig\controller\Twig
     // recupere les donnees du template twig
     public function getTemplateData(): array
     {
-        return ["name" => "MON_NOM"];
+        return ['name' => 'MON_NOM'];
     }
 }
 
@@ -89,7 +89,7 @@ class TwigTest extends TestCase
 
         // cree le controller et le module twig
         $controller = new TwigMock();
-        $module = new Twig($controller);
+        $module     = new Twig($controller);
 
         // execute le module twig
         $output = $module->render();

@@ -1,7 +1,11 @@
 {
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.defaultFormatter": "junstyle.php-cs-fixer",
-    "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
-    "php-cs-fixer.config": "${workspaceFolder}/.php-cs-fixer.php"
+    "editor.formatOnSave": false,
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.php$",
+                "cmd": "${workspaceFolder}/vendor/bin/php-cs-fixer fix --config=${workspaceFolder}/.php-cs-fixer.php ${file}"
+            }
+        ]
+    }
 }

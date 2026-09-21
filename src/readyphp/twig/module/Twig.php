@@ -25,6 +25,7 @@ class Twig
     public function render()
     {
         $output = $this->m_twig->render($this->m_controller->getTemplateFile(), $this->m_controller->getTemplateData());
+
         return $output;
     }
 }

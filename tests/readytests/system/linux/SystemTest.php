@@ -7,7 +7,7 @@ namespace readytests\system\linux;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\RequiresOperatingSystem;
 
-#[RequiresOperatingSystem("Linux")]
+#[RequiresOperatingSystem('Linux')]
 class SystemTest extends TestCase
 {
     // teste la lecture du repertoire temporaire

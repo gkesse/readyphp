@@ -7,7 +7,7 @@ namespace readytests\system\windows;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\RequiresOperatingSystem;
 
-#[RequiresOperatingSystem("Windows")]
+#[RequiresOperatingSystem('Windows')]
 class SystemTest extends TestCase
 {
     // teste la lecture du repertoire temporaire
