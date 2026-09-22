@@ -75,6 +75,7 @@ return (new Config())
         'phpdoc_no_useless_inheritdoc'                  => true,
         'phpdoc_single_line_var_spacing'                => true,
         'phpdoc_var_annotation_correct_order'           => true,
+        'phpdoc_to_return_type'                         => true,
 
         // Nettoyage
         'no_whitespace_in_blank_line' => true,

@@ -6,10 +6,10 @@ namespace readyphp\process;
 
 class Process
 {
-    public function run()
+    public function run(): void
     {
-        $home = new \readyphp\home\controller\Home();
-        $twig = new \readyphp\twig\module\Twig($home);
+        $home   = new \readyphp\home\controller\Home();
+        $twig   = new \readyphp\twig\module\Twig($home);
         echo $twig->render();
     }
 }

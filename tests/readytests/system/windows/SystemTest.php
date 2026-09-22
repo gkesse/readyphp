@@ -6,20 +6,16 @@ namespace readytests\system\windows;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\RequiresOperatingSystem;
+use PHPUnit\Framework\Assert;
 
 #[RequiresOperatingSystem('Windows')]
 class SystemTest extends TestCase
 {
     // teste la lecture du repertoire temporaire
-    public function test_lecture_repertoire_temporaire()
+    public function test_lecture_repertoire_temporaire(): void
     {
-        // definit le pattern du repertoire temporaire
         $DEF_TMP_DIR_PATTERN = '/^C:\\\\Users\\\\[^\\\\]+\\\\AppData\\\\Local\\\\Temp$/';
-
-        // recupere le repertoire temporaire
-        $tmp_dir = sys_get_temp_dir();
-
-        // teste la lecture du repertoire temporaire
-        $this->assertMatchesRegularExpression($DEF_TMP_DIR_PATTERN, $tmp_dir);
+        $tmp_dir             = sys_get_temp_dir();
+        Assert::assertMatchesRegularExpression($DEF_TMP_DIR_PATTERN, $tmp_dir);
     }
 }

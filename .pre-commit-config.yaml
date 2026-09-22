@@ -21,3 +21,10 @@ repos:
         entry: hooks/pre-commit/readyphp-tests-php.sh
         language: system
         pass_filenames: false
+
+      - id: readyphp-phpstan-strict
+        name: PHPStan strict (types obligatoires)
+        entry: hooks/pre-commit/readyphp-phpstan-strict.sh
+        language: system
+        pass_filenames: true
+        types: [php]

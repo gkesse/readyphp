@@ -1,0 +1,216 @@
+{% macro runSiteInfo(home) %}
+    <title>{{ home.getPageTitle() }}</title>
+    <meta charset="{{ home.getPageEncoding() }}" />
+    <link rel="shortcut icon" type="{{ home.getPageLogoMimeType() }}" href="{{ home.getPageLogo() }}"/>
+    <meta name="description" content="{{ home.getPageDescription() }}" />
+{% endmacro %}
+
+{% macro runOpenGraph(home) %}
+    <meta property="og:type" content="{{ home.getOpenGraphType() }}" />
+    <meta property="og:image" content="{{ home.getOpenGraphImage() }}" />
+    <meta property="og:image:secure_url" content="{{ home.getOpenGraphImage() }}"/>
+    <meta property="og:image:type" content="{{ home.getOpenGraphImageMimeType() }}"/>
+    <meta property="og:image:width" content="{{ home.getOpenGraphImageWidth() }}"/>
+    <meta property="og:image:height" content="{{ home.getOpenGraphImageHeight() }}"/>
+    <meta property="og:locale" content="{{ home.getOpenGraphLocale() }}" />
+    <meta property="og:url" content="{{ home.getPageUrl() }}" />
+    <meta property="og:title" content="{{ home.getPageTitle() }}" />
+    <meta property="og:site_name" content="{{ home.getSiteName() }}" />
+    <meta property="og:description" content="{{ home.getPageDescription() }}"/>
+{% endmacro %}
+
+{% macro runGoogleFonts() %}
+    <link rel="stylesheet" href="/libs/google-fonts/Aclonica/css.css" />
+    <link rel="stylesheet" href="/libs/google-fonts/Akronim/css.css" />
+    <link rel="stylesheet" href="/libs/google-fonts/Allan/css.css" />
+    <link rel="stylesheet" href="/libs/google-fonts/Archivo_Narrow/css.css"/>
+    <link rel="stylesheet" href="/libs/google-fonts/Anton/css.css" />
+    <link rel="stylesheet" href="/libs/google-fonts/Aclonica/css.css" />
+{% endmacro %}
+
+{% macro runFontAwesome() %}
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css" />
+{% endmacro %}
+
+{% macro runStyleCss() %}
+    <link rel="stylesheet" href="/public/css/styles.css" />
+{% endmacro %}
+
+{% macro runBackground() %}
+    <div class="Background1"></div>
+    <div class="Background2"></div>
+    <div class="Background3"></div>
+{% endmacro %}
+
+{% macro runHeader(home, menuList, currentMenu) %}
+    <header class="Menu1" id="HeaderMenu">
+        <a class="Menu3" href="{{ home.homePage }}">
+            <img class="Menu4" src="{{ home.pageLogo }}" alt="logo.png"/>
+            <span class="Menu5">{{ home.siteName }}</span>
+        </a>
+        {{ _self.runHeaderMenu(menuList, currentMenu, 0) }}
+        <div class="Bars1" onclick="callBackend('app', 'open_menu_bars', this)" data-is-opened="false">
+            <i class="fa fa-bars"></i>
+        </div>
+    </header>
+{% endmacro %}
+
+{% macro runHeaderMenu(menuList, currentMenu, parentIndex) %}
+    {% set menuListI = menuList.getMenuListByParentIndex(parentIndex) %}
+    {% for menuI in menuListI.getMenuList() %}
+        {% if menuI.m_isActive %}
+            {% set menuListJ = menuList.getMenuListByParentIndex(menuI.m_index) %}
+            {% set activeClass = '' %}
+            {% set isActive = false %}
+            {% set isActive = (isActive or menuI.isEqual(currentMenu)) %}
+            {% set isActive = (isActive or ((menuI.m_name == currentMenu.m_name) and (menuI.m_parentIndex ==0))) %}
+            {% if isActive %}
+                {% set activeClass = ' Active' %}
+            {% endif %}
+            {% if menuListJ.isEmpty() %}
+                {% if menuI.m_parentIndex == 0 %}
+                    <a class='Menu2{{ activeClass }}' href='{{ menuI.m_link }}'><div class='Menu14'>{{ menuI.m_label }}</div></a>
+                {% else %}
+                    <a class='Menu10' href='{{ menuI.m_link }}'><div class='Menu8{{ activeClass }}'>{{ menuI.m_label }}</div></a>
+                {% endif %}
+            {% else %}
+                {% if menuI.m_parentIndex == 0 %}
+                    <div class='Menu6'><a class='Menu2{{ activeClass }}' href='{{ menuI.m_link }}' onclick='return callBackend("app", "open_menu_group", this)'><div class='Menu14'>{{ menuI.m_label }}</div><i class='Menu13 fa fa-caret-down'></i></a>
+                {% else %}
+                    <div class='Menu9'><div class='Menu12'><div class='Menu8'>{{ menuI.m_label }} <i class='Menu15 fa fa-caret-down'></i></div></div>
+                {% endif %}
+
+                {% if menuI.m_parentIndex == 0 %}
+                    <div class='Menu7'><a class='Menu16' href='{{ menuI.m_link }}'><div class='Menu8'>{{ menuI.m_label }}</div></a>
+                {% else %}
+                    <div class='Menu11'>
+                    {% endif %}
+                    {{ _self.runHeaderSubMenu(menuList, currentMenu, menuI.m_index) }}
+                </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro runHeaderSubMenu(menuList, currentMenu, parentIndex) %}
+    {% set menuListI = menuList.getMenuListByParentIndex(parentIndex) %}
+    {% for menuI in menuListI.getMenuList() %}
+        {% if menuI.m_isActive %}
+            {% set menuListJ = menuList.getMenuListByParentIndex(menuI.m_index) %}
+            {% set activeClass = '' %}
+            {% set isActive = false %}
+            {% set isActive = (isActive or menuI.isEqual(currentMenu)) %}
+            {% set isActive = (isActive or ((menuI.m_name == currentMenu.m_name) and (menuI.m_parentIndex ==0))) %}
+            {% if isActive %}
+                {% set activeClass = ' Active' %}
+            {% endif %}
+            {% if menuListJ.isEmpty() %}
+                {% if menuI.m_parentIndex == 0 %}
+                    <a class='Menu2{{ activeClass }}' href='{{ menuI.m_link }}'><div class='Menu14'>{{ menuI.m_label }}</div></a>
+                {% else %}
+                    <a class='Menu10' href='{{ menuI.m_link }}'><div class='Menu8{{ activeClass }}'>{{ menuI.m_label }}</div></a>
+                {% endif %}
+            {% else %}
+                {% if menuI.m_parentIndex == 0 %}
+                    <div class='Menu6'><a class='Menu2{{ activeClass }}' href='{{ menuI.m_link }}' onclick='return callBackend("app", "open_menu_group", this)'><div class='Menu14'>{{ menuI.m_label }}</div><i class='Menu13 fa fa-caret-down'></i></a>
+                {% else %}
+                    <div class='Menu9'><div class='Menu12'><div class='Menu8'>{{ menuI.m_label }} <i class='Menu15 fa fa-caret-down'></i></div></div>
+                {% endif %}
+
+                {% if menuI.m_parentIndex == 0 %}
+                    <div class='Menu7'><a class='Menu16' href='{{ menuI.m_link }}'><div class='Menu8'>{{ menuI.m_label }}</div></a>
+                {% else %}
+                    <div class='Menu11'>
+                    {% endif %}
+                    {{ _self.runHeaderSubMenu(menuList, currentMenu, menuI.m_index) }}
+                </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro runView(home, currentMenu) %}
+    <div class="View1">
+        <h1 class="View2">{{ currentMenu.m_title }}</h1>
+        <div class="View3">
+            <div>
+                <div class="View4">
+                    <div class="View6">
+                        <i class="fa fa-eye"></i> Vues
+                    </div>
+                    <div class="View7">{{ home.getViewCount() }}</div>
+                </div>
+            </div>
+            <div>
+                <a href="{{ home.getFacebookShareUrl() }}" target="_blank"><i class="View5 Facebook fa fa-facebook"></i></a>
+                <a href="{{ home.getLinkedInShareUrl() }}" target="_blank"><i class="View5 Linkedin fa fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro runPage(page) %}
+    {% include page.getTemplateFile() %}
+{% endmacro %}
+
+{% macro runFooterTitle() %}
+    <div>Réseaux Sociaux - Réjoignez-nous</div>
+{% endmacro %}
+
+{% macro runFooterFacebook() %}
+    <a href="#">
+        <i class="Footer2 fa fa-facebook"></i>
+    </a>
+{% endmacro %}
+
+{% macro runFooterSkype() %}
+    <a href="#">
+        <i class="Footer2 fa fa-skype"></i>
+    </a>
+{% endmacro %}
+
+{% macro runFooterLinkedIn() %}
+    <a href="https://www.linkedin.com/in/tia-gerard-kesse/" target="_blank">
+        <i class="Footer2 fa fa-linkedin"></i>
+    </a>
+{% endmacro %}
+²
+{% macro runFooterGithub() %}
+    <a href="https://github.com/gkesse/" target="_blank">
+        <i class="Footer2 fa fa-github"></i>
+    </a>
+{% endmacro %}
+
+{% macro runFooterCopyright(home) %}
+    <i class="fa fa-copyright"></i>
+    <span>{{ home.getSiteStartYear() }} - {{ home.getCurrentYear() }} | {{ home.getSiteName() }}</span>
+    <div>{{ home.getSiteVision()|raw }}</div>
+{% endmacro %}
+
+{% macro runScriptJs() %}
+    <script src="/libs/jquery/jquery-4.0.0.min.js"></script>
+
+    <script src="/public/js/app/tools/StrictInstance.js"></script>
+    <script src="/public/js/app/tools/ViewPort.js"></script>
+    <script src="/public/js/app/tools/JQuery.js"></script>
+
+    <script src="/public/js/app/menu/Action.js"></script>
+    <script src="/public/js/app/menu/Header.js"></script>
+    <script src="/public/js/app/controller/Menu.js"></script>
+
+    <script src="/public/js/app/admin/Editor.js"></script>
+    <script src="/public/js/app/controller/Admin.js"></script>
+
+    <script src="/public/js/app/model/BackendInfo.js"></script>
+    <script src="/public/js/app/backend/Backend.js"></script>
+    <script src="/public/js/app/backend/App.js"></script>
+    <script src="/public/js/app/backend/Editor.js"></script>
+    <script src="/public/js/app/backend/Sitemap.js"></script>
+    <script src="/public/js/app/factory/Backend.js"></script>
+    <script src="/public/js/app/controller/Backend.js"></script>
+
+    <script src="/public/js/app/controller/Main.js"></script>
+    <script src="/public/js/scripts.js"></script>
+{% endmacro %}

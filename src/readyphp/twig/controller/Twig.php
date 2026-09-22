@@ -16,7 +16,7 @@ abstract class Twig
     }
 
     // recupere le repertoire des templates twig
-    public function getTemplateDir()
+    public function getTemplateDir(): string
     {
         return $this->m_template_dir;
     }
@@ -24,6 +24,10 @@ abstract class Twig
     // recupere le fichier du template twig
     abstract public function getTemplateFile(): string;
 
-    // recupere les donnees du template twig
+    /**
+     * Recupere les donnees du template twig
+     *
+     * @return array<string, mixed>
+     */
     abstract public function getTemplateData(): array;
 }

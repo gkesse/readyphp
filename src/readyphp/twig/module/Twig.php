@@ -22,7 +22,7 @@ class Twig
     }
 
     // recupere le rendu du template twig
-    public function render()
+    public function render(): string
     {
         $output = $this->m_twig->render($this->m_controller->getTemplateFile(), $this->m_controller->getTemplateData());
 
