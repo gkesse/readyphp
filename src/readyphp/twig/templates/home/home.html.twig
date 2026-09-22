@@ -1,2 +1,39 @@
-<h1>{{ home.getTitle() }}<br>
-{{ home.getContent() }}</h1>
+{% import 'home/home.macro.twig' as macroHome %}
+
+{# {% set pageId = home.getPageId() %}
+{% set menuList = home.loadHeaderMenuList() %}
+{% set currentMenu = menuList.getMenuByLink(pageId) %} #}
+
+<!DOCTYPE html>
+<html lang="{{ home.pageLanguage }}">
+    <head>
+        {{ macroHome.runSiteInfo(home) }}
+        {# {{ macroHome.runOpenGraph(home) }}
+        {{ macroHome.runGoogleFonts() }}
+        {{ macroHome.runFontAwesome() }}
+        {{ macroHome.runStyleCss() }} #}
+    </head>
+    <body>
+        <div class="Html1">
+            {# {{ macroHome.runBackground() }}
+            <div class="Html2 HtmlPage">
+                {{ macroHome.runHeader(home, menuList, currentMenu) }}
+                {{ macroHome.runView(home, currentMenu) }}
+                {{ macroHome.runPage(page) }}
+            </div>
+            <footer class="Footer1">
+                {{ macroHome.runFooterTitle() }}
+                <div>
+                    {{ macroHome.runFooterFacebook() }}
+                    {{ macroHome.runFooterSkype() }}
+                    {{ macroHome.runFooterLinkedIn() }}
+                    {{ macroHome.runFooterGithub() }}
+                </div>
+                <div>
+                    {{ macroHome.runFooterCopyright(home) }}
+                </div>
+            </footer>
+        </div>
+        {{ macroHome.runScriptJs() }} #}
+    </body>
+</html>
